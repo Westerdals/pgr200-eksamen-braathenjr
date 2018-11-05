@@ -49,7 +49,9 @@ public class DatabaseMain {
 	}
 
 	public static void main(String[] args) throws SQLException, IOException {
-		new DatabaseMain().run(args);
+		 HttpServer server = new HttpServer(10080);
+	        server.start();
+	        new DatabaseMain().run(args);
 
 	}
 
