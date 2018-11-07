@@ -77,14 +77,14 @@ public class ConferenceTalkDao {
 		Scanner sc = new Scanner(System.in);
 		try (Connection conn = dataSource.getConnection()) {
 
-			System.out.println("What is the TITLE of the conference you are looking for?");
-			String talkTitle2 = sc.nextLine().toLowerCase();
+			System.out.println("What is the ID of the conference you are looking for?");
+			long talkID = sc.nextLong();
 			//hvis den ikke finnes, print ut error message
 
-			String sql = "select * from conference_talk where title = ?";
+			String sql = "select * from conference_talk where ID = ?";
 
 			try (PreparedStatement statement = conn.prepareStatement(sql)) {
-				statement.setString(1, talkTitle2);
+				statement.setLong(1, talkID);
 				try (ResultSet rs = statement.executeQuery()) {
 					List<ConferenceTalk> result = new ArrayList<>();
 					while (rs.next()) {
