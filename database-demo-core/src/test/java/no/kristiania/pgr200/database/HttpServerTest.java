@@ -1,7 +1,5 @@
 package no.kristiania.pgr200.database;
 
-
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.IOException;

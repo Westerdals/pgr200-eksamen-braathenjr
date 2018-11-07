@@ -24,7 +24,9 @@ public class HttpQuery {
 	}
 
 	public HttpQuery addParameter(String name, String value) {
+		if (value != null) {
 		parameters.put(name, value);
+		}
 		return this;
 	}
 	

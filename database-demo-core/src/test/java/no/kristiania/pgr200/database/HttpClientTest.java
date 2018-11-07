@@ -48,5 +48,36 @@ public class HttpClientTest {
         assertThat(response.getStatusCode()).isEqualTo(307);
         assertThat(response.getHeader("Location")).isEqualTo("http://www.google.com");
     }
+    
+    
+    
+    
+	@Test
+	public void shouldRequiredArgumentsFromCommandLine() {
+		String[] args = new String[] {
+				"add", "-title", "Hello World", "-description", "How are you doing"
+		};
+		AddTalkCommand expectedCommand = new AddTalkCommand();
+		expectedCommand.setTitle("Hello World");
+		expectedCommand.setDescription("How are you doing");
+		
+		Program program = new Program();
+		assertThat(expectedCommand)
+			.isEqualToComparingFieldByField(program.parseCommand(args));
+	}
+//	@Test
+//	public void shouldGenerateHttpRequestForAddTalkCommand() {
+//		String[] args = new String[] {
+//				"add", "-title", "Hello World", "-description", "How are you doing"
+//		};
+//		AddTalkCommand expectedCommand = new AddTalkCommand();
+//		expectedCommand.setTitle("Hello World");
+//		expectedCommand.setDescription("How are you doing");
+//		HttpPostRequest request = expectedCommand.createRequest("localhost", 8080);
+//		assertThat(request.getRequestUrl())
+//		.isEqualTo("http://localhost:8080/api/talk");
+//		assertThat(request.getBody())
+//		.isEqualTo("title=Hello+World&description=How+are+you+doing");
+//	}
 
 }

@@ -20,7 +20,6 @@ public class HttpPath {
 			for(String pair : parameterPairs) {  
 				query.addParameter(pair.substring(0, getEqualsPos(pair)),  URLDecoder.decode(pair.substring(getEqualsPos(pair) +1), "UTF-8"));
 			}
-			
 		}
 	}
 
@@ -31,7 +30,6 @@ public class HttpPath {
 	public String getPath() {
 		return path;
 	}
-
 
 	public HttpQuery getQuery() {
 		if(query == null) return null;

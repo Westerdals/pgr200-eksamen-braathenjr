@@ -17,6 +17,7 @@ public class DatabaseMain {
 
 	private DataSource dataSource;
 	private ConferenceTalkDao talkDao;
+	private HttpRequest req;
 
 	public DatabaseMain() throws SQLException, IOException {
 		this.dataSource = createDataSource();

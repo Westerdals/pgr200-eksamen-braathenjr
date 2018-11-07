@@ -11,6 +11,7 @@ public class HttpServer {
 
     private int port;
     private int actualPort;
+    private ConferenceTalk talk;
 
     public HttpServer(int port) {
         this.port = port;
@@ -37,19 +38,29 @@ public class HttpServer {
                 HttpPath path = new HttpPath(uri);
                 
                 while (!line.isEmpty()) {
-                    System.out.println(line);
+                	//spam
+                    //System.out.println(line);
                     line = readNextLine(input);
                 }
                 
                 
                 String body = "Hello world!\r\n";
+//                path.getPath().equals("/api/talks");
+                
+//                get -> /api/talks -> returner en liste med talks i body.
+//                new HttpQuery().getParameter("title")
+//                new ConferenceTalkDao(null).insertTalk(talk);
+//                
+//                String body = new Program().processArgument(args);
+//                
+//                switch(args) { "list" : return listTalks(); }
 
                 boolean hasQuery = path.getQuery() == null ? false : true;
+                
                 if(hasQuery && path.getQuery().getParameter("body") != null) {
                 	body = path.getQuery().getParameter("body");
                 }
 
-                
                 if(hasQuery && path.getQuery().getParameter("status") != null) {
     				output.write(("HTTP/1.1 " + path.getQuery().getParameter("status")+ " Ok\r\n").getBytes());
                 }else {
@@ -64,9 +75,9 @@ public class HttpServer {
                 output.write(("Content-Length: " + body.length() + "\r\n").getBytes());
                 output.write("\r\n".getBytes());
                 output.write(body.getBytes());
+                
 
-
-                // clientSocket.close();
+                clientSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -90,5 +101,4 @@ public class HttpServer {
     public int getPort() {
         return actualPort;
     }
-
 }
